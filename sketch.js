@@ -8,13 +8,15 @@ var control1 = false;
 var control2 = false;
 var control3 = false;
 var control4 = false;
-var dist;
+var dist, phase;
 var wetEffect;
+var c1, c2, c3, c4, c5;
 
 function setup(){
 	createCanvas(600, 400);
 	synth = new Tone.Synth().toMaster();
 	dist = new Tone.Distortion(.8);
+	phase = new Tone.Phaser(15, 5, 1000);
 	
 	player1 = new Tone.Player("media/Expressions.mp3").toMaster();
 	player2 = new Tone.Player("media/Haunting.wav").toMaster();
@@ -23,6 +25,11 @@ function setup(){
 
 	wetEffect = 0;
 
+	c1 = color(255);
+	c2 = color(255);
+	c3 = color(255);
+	c4 = color(255);
+	c5 = color(255);
 }
 
 function draw(){
@@ -69,38 +76,38 @@ function draw(){
 
 function controlButtonPlace(){
 	if(control1){
-		controlButtons(250, 70, 30, 30);
-		controlButtons(300, 70, 30, 30);
-		controlButtons(350, 70, 30, 30);
-		controlButtons(400, 70, 30, 30);
-		controlButtons(450, 70, 30, 30);
+		controlButtons(250, 70, 30, 30, c1);
+		controlButtons(300, 70, 30, 30, c2);
+		controlButtons(350, 70, 30, 30, c3);
+		controlButtons(400, 70, 30, 30, c4);
+		controlButtons(450, 70, 30, 30, c5);
 	}
 	if(control2){
-		controlButtons(250, 140, 30, 30);
-		controlButtons(300, 140, 30, 30);
-		controlButtons(350, 140, 30, 30);
-		controlButtons(400, 140, 30, 30);
-		controlButtons(450, 140, 30, 30);
+		controlButtons(250, 140, 30, 30, c1);
+		controlButtons(300, 140, 30, 30, c2);
+		controlButtons(350, 140, 30, 30, c3);
+		controlButtons(400, 140, 30, 30, c4);
+		controlButtons(450, 140, 30, 30, c5);
 	}
 	if(control3){
-		controlButtons(250, 210, 30, 30);
-		controlButtons(300, 210, 30, 30);
-		controlButtons(350, 210, 30, 30);
-		controlButtons(400, 210, 30, 30);
-		controlButtons(450, 210, 30, 30);
+		controlButtons(250, 210, 30, 30, c1);
+		controlButtons(300, 210, 30, 30, c2);
+		controlButtons(350, 210, 30, 30, c3);
+		controlButtons(400, 210, 30, 30, c4);
+		controlButtons(450, 210, 30, 30, c5);
 	}
 	if(control4){
-		controlButtons(250, 280, 30, 30);
-		controlButtons(300, 280, 30, 30);
-		controlButtons(350, 280, 30, 30);
-		controlButtons(400, 280, 30, 30);
-		controlButtons(450, 280, 30, 30);
+		controlButtons(250, 280, 30, 30, c1);
+		controlButtons(300, 280, 30, 30, c2);
+		controlButtons(350, 280, 30, 30, c3);
+		controlButtons(400, 280, 30, 30, c4);
+		controlButtons(450, 280, 30, 30, c5);
 	}
 }
 
-function controlButtons(x, y, width, height){
+function controlButtons(x, y, width, height, c){
 	stroke(0);
-	fill(255);
+	fill(c);
 	rect(x, y, width, height);
 }
 
@@ -208,23 +215,53 @@ function mousePressed(){
 		//Distortion controls
 	else if((control1 == true) && ((mouseX >= 250) && (mouseX <= 250 + 30) &&
 		(mouseY >= 70) && (mouseY <= 70 + 30))){
-		wetEffect = 0.2;
+		wetEffect = 0;
+		dist.wet.value = wetEffect;
+		c1 = color(0);
+		c2 = color(255);
+		c3 = color(255);
+		c4 = color(255);
+		c5 = color(255);
 	}
 	else if((control1 == true) && ((mouseX >= 300) && (mouseX <= 300 + 30) &&
 		(mouseY >= 70) && (mouseY <= 70 + 30))){
-		wetEffect = 0.4;
+		wetEffect = 0.3;
+		dist.wet.value = wetEffect;
+		c1 = color(255);
+		c2 = color(0);
+		c3 = color(255);
+		c4 = color(255);
+		c5 = color(255);
 	}
 	else if((control1 == true) && ((mouseX >=350) && (mouseX <= 350 + 30) &&
 		(mouseY >= 70) && (mouseY <= 70 + 30))){
 		wetEffect = 0.6;
+		dist.wet.value = wetEffect;
+		c1 = color(255);
+		c2 = color(255);
+		c3 = color(0);
+		c4 = color(255);
+		c5 = color(255);
 	}
 	else if((control1 == true) && ((mouseX >= 400) && (mouseX <= 400 + 30) &&
 		(mouseY >= 70) && (mouseY <= 70 + 30))){
 		wetEffect = 0.8;
+		dist.wet.value = wetEffect;
+		c1 = color(255);
+		c2 = color(255);
+		c3 = color(255);
+		c4 = color(0);
+		c5 = color(255);
 	}
 	else if((control1 == true) && ((mouseX >= 450) && (mouseX <= 450 + 30) &&
 		(mouseY >= 70) && (mouseY <= 70 + 30))){
 		wetEffect = 1;
+		dist.wet.value = wetEffect;
+		c1 = color(255);
+		c2 = color(255);
+		c3 = color(255);
+		c4 = color(255);
+		c5 = color(0);
 	}
 
 		//Phraser
@@ -235,6 +272,62 @@ function mousePressed(){
 			control3 = false;
 			control4 = false;
 
+			player1.connect(phase);
+			phase.toMaster();
+		}
+	else if((control2 == true) && ((mouseX >= 250) && (mouseX <= 250 + 30) &&
+		(mouseY >= 140) && (mouseY <= 140 + 30))){
+			c1 = color(0);
+			c2 = color(255);
+			c3 = color(255);
+			c4 = color(255);
+			c5 = color(255);
+
+			phase.frequency.value = 0;
+			phase.octaves.value = 0;
+		}
+	else if((control2 == true) && ((mouseX >= 300) && (mouseX <= 300 + 30) &&
+	(mouseY >= 140) && (mouseY <= 140 + 30))){
+		c1 = color(255);
+		c2 = color(0);
+		c3 = color(255);
+		c4 = color(255);
+		c5 = color(255);
+
+		phase.frequency.value = 10;
+		phase.octaves.value = 2;
+	}
+	else if((control2 == true) && ((mouseX >= 350) && (mouseX <= 350 + 30) &&
+		(mouseY >= 140) && (mouseY <= 140 + 30))){
+			c1 = color(255);
+			c2 = color(255);
+			c3 = color(0);
+			c4 = color(255);
+			c5 = color(255);
+
+			phase.frequency.value = 20;
+			phase.octaves.value = 4;
+		}
+	else if((control2 == true) && ((mouseX >= 400) && (mouseX <= 400 + 30) &&
+		(mouseY >= 140) && (mouseY <= 140 + 30))){
+			c1 = color(255);
+			c2 = color(255);
+			c3 = color(255);
+			c4 = color(0);
+			c5 = color(255);
+			phase.frequency.value = 30;
+			phase.octaves.value = 6;
+		}
+	else if((control2 == true) && ((mouseX >= 450) && (mouseX <= 450 + 30) &&
+		(mouseY >= 140) && (mouseY <= 140 + 30))){
+			c1 = color(255);
+			c2 = color(255);
+			c3 = color(255);
+			c4 = color(255);
+			c5 = color(0);
+
+			phase.frequency.value = 40;
+			phase.octaves.value = 8;
 		}
 		//Tremolo
 	else if((mouseX >= 150) && (mouseX <= 150 + 80) &&
