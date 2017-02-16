@@ -39,6 +39,7 @@ function draw(){
 
 		effectButtons();
 		controlButtonPlace();
+		
 	}
 
 	if(s2 == true){
@@ -46,7 +47,7 @@ function draw(){
 		rect(125, 20, 450, 350);
 
 		effectButtons();
-		controlButtonPlace()
+		controlButtonPlace();
 	}
 
 	if(s3 == true){
@@ -54,7 +55,7 @@ function draw(){
 		rect(125, 20, 450, 350);
 
 		effectButtons();
-		controlButtonPlace()
+		controlButtonPlace();
 	}
 
 	if(s4 == true){
@@ -62,39 +63,39 @@ function draw(){
 		rect(125, 20, 450, 350);
 
 		effectButtons();
-		controlButtonPlace()
+		controlButtonPlace();
 	}
 }
 
 function controlButtonPlace(){
 	if(control1){
-			controlButtons(250, 70, 30, 30);
-			controlButtons(300, 70, 30, 30);
-			controlButtons(350, 70, 30, 30);
-			controlButtons(400, 70, 30, 30);
-			controlButtons(450, 70, 30, 30);
-		}
-		if(control2){
-			controlButtons(250, 140, 30, 30);
-			controlButtons(300, 140, 30, 30);
-			controlButtons(350, 140, 30, 30);
-			controlButtons(400, 140, 30, 30);
-			controlButtons(450, 140, 30, 30);
-		}
-		if(control3){
-			controlButtons(250, 210, 30, 30);
-			controlButtons(300, 210, 30, 30);
-			controlButtons(350, 210, 30, 30);
-			controlButtons(400, 210, 30, 30);
-			controlButtons(450, 210, 30, 30);
-		}
-		if(control4){
-			controlButtons(250, 280, 30, 30);
-			controlButtons(300, 280, 30, 30);
-			controlButtons(350, 280, 30, 30);
-			controlButtons(400, 280, 30, 30);
-			controlButtons(450, 280, 30, 30);
-		}
+		controlButtons(250, 70, 30, 30);
+		controlButtons(300, 70, 30, 30);
+		controlButtons(350, 70, 30, 30);
+		controlButtons(400, 70, 30, 30);
+		controlButtons(450, 70, 30, 30);
+	}
+	if(control2){
+		controlButtons(250, 140, 30, 30);
+		controlButtons(300, 140, 30, 30);
+		controlButtons(350, 140, 30, 30);
+		controlButtons(400, 140, 30, 30);
+		controlButtons(450, 140, 30, 30);
+	}
+	if(control3){
+		controlButtons(250, 210, 30, 30);
+		controlButtons(300, 210, 30, 30);
+		controlButtons(350, 210, 30, 30);
+		controlButtons(400, 210, 30, 30);
+		controlButtons(450, 210, 30, 30);
+	}
+	if(control4){
+		controlButtons(250, 280, 30, 30);
+		controlButtons(300, 280, 30, 30);
+		controlButtons(350, 280, 30, 30);
+		controlButtons(400, 280, 30, 30);
+		controlButtons(450, 280, 30, 30);
+	}
 }
 
 function controlButtons(x, y, width, height){
@@ -185,6 +186,7 @@ function mousePressed(){
 			s2 = false;
 			s3 = false;
 			s4 = false;
+
 			player1.stop();
 			player2.stop();
 			player3.stop();
@@ -197,6 +199,7 @@ function mousePressed(){
 			control2 = false;
 			control3 = false;
 			control4 = false;
+
 			player1.connect(dist);
 			dist.toMaster();
 			dist.wet.value = wetEffect;
@@ -205,23 +208,23 @@ function mousePressed(){
 		//Distortion controls
 	else if((control1 == true) && ((mouseX >= 250) && (mouseX <= 250 + 30) &&
 		(mouseY >= 70) && (mouseY <= 70 + 30))){
-			wetEffect = 0.2;
+		wetEffect = 0.2;
 	}
 	else if((control1 == true) && ((mouseX >= 300) && (mouseX <= 300 + 30) &&
 		(mouseY >= 70) && (mouseY <= 70 + 30))){
-			wetEffect = 0.4;
+		wetEffect = 0.4;
 	}
 	else if((control1 == true) && ((mouseX >=350) && (mouseX <= 350 + 30) &&
 		(mouseY >= 70) && (mouseY <= 70 + 30))){
-			wetEffect = 0.6;
+		wetEffect = 0.6;
 	}
 	else if((control1 == true) && ((mouseX >= 400) && (mouseX <= 400 + 30) &&
 		(mouseY >= 70) && (mouseY <= 70 + 30))){
-			wetEffect = 0.8;
+		wetEffect = 0.8;
 	}
 	else if((control1 == true) && ((mouseX >= 450) && (mouseX <= 450 + 30) &&
 		(mouseY >= 70) && (mouseY <= 70 + 30))){
-			wetEffect = 1;
+		wetEffect = 1;
 	}
 
 		//Phraser
@@ -249,4 +252,5 @@ function mousePressed(){
 			control3 = false;
 			control4 = true;
 		}
+
 }
